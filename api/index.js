@@ -1,12 +1,16 @@
 const express = require('express');
 const app = express();
+const cors = require("cors");
 app.use(express.json());
+app.use(cors({
+  origin: "*"
+}));
 // Variable to store the ngrok address
 let ngrokAddress = '';
 
 // API endpoint to update the ngrok address
 app.put('/', (req, res) => {
-    console.log(req.body)
+  console.log(req.body)
   const { address } = req.body;
   if (!address) {
     return res.status(400).send('Missing address in request body');
